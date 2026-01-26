@@ -1,0 +1,33 @@
+Explorare date (EDA)
+
+Din scatterplot-uri observam o relatie pozitiva intre temperatura si numarul de inchirieri, cu semne de nonliniaritate la valori ridicate. Umiditatea si viteza vantului au un efect negativ asupra cererii. Sezonul influenteaza puternic numarul de inchirieri, iar iarna este asociata cu valori mai mici. Zilele de sarbatoare tind sa aiba cerere mai scazuta.
+
+Modelare regresie
+
+S-au construit doua modele: unul liniar si unul polinomial care include termenul temp^2. Predictorii continui au fost standardizati pentru stabilitate numerica.
+
+Inferenta si diagnostic
+
+In ambele modele, temperatura este predictorul dominant. Sezonul si indicatorul de sarbatoare au de asemenea un impact important. In modelul polinomial, termenul temp^2 confirma existenta unei relatii neliniare intre temperatura si cerere.
+
+Compararea modelelor si PPC
+
+4a. Compararea prin WAIC/LOO
+
+Modelele au fost comparate folosind criteriul LOO, care ofera o estimare robusta a performantei predictive. Modelul cu termen quadratic are un scor mai bun si este preferat.
+
+4b. Posterior Predictive Checks
+
+Verificarile predictive arata ca distributiile simulate reproduc bine distributia observata. Intervalele de incertitudine cresc la extremele temperaturii, indicand variabilitate mai mare.
+
+Definirea cererii ridicate
+
+Pragul Q a fost ales ca percentila 75 a variabilei rentals. Zilele cu rentals >= Q au fost etichetate ca zile cu cerere ridicata.
+
+Regresie logistica
+
+Modelul logistic Bayesian a fost construit folosind aceleasi variabile standardizate. Termenul temp^2 a fost pastrat deoarece imbunatateste performanta modelului si surprinde relatia neliniara dintre temperatura si probabilitatea de cerere ridicata.
+
+Analiza decizionala (HDI)
+
+Intervalele HDI de 95% pentru coeficientii temperaturii si sezonului nu includ valoarea zero, indicand un efect credibil. Temperatura este cea mai influenta variabila asupra probabilitatii de cerere ridicata, urmata de sezon si de conditiile meteo.
